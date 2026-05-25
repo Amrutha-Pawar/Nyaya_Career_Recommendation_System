@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nyaya Career Recommendation System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Nyāya-Based Career Recommendation System</h1>
+
+        <form method="POST">
+
+            <h3>Select Your Skills and Interests</h3>
+
+            <label><input type="checkbox" name="skills" value="coding"> Coding</label><br>
+
+            <label><input type="checkbox" name="skills" value="ai"> AI Interest</label><br>
+
+            <label><input type="checkbox" name="skills" value="mathematics"> Mathematics</label><br>
+
+            <label><input type="checkbox" name="skills" value="communication"> Communication</label><br>
+
+            <label><input type="checkbox" name="skills" value="leadership"> Leadership</label><br>
+
+            <label><input type="checkbox" name="skills" value="creativity"> Creativity</label><br>
+
+            <label><input type="checkbox" name="skills" value="design"> Design</label><br>
+
+            <label><input type="checkbox" name="skills" value="problem_solving"> Problem Solving</label><br>
+
+            <label><input type="checkbox" name="skills" value="statistics"> Statistics</label><br>
+
+            <label><input type="checkbox" name="skills" value="analysis"> Analysis</label><br><br>
+
+            <button type="submit">Get Recommendation</button>
+
+        </form>
+
+        {% if recommendations %}
+
+            <div class="result">
+
+                <h2>Career Recommendations</h2>
+
+                {% for rec in recommendations %}
+
+                    <div class="card">
+
+                        <h3>{{ rec.career }}</h3>
+
+                        <p><strong>Reason:</strong> {{ rec.reason }}</p>
+
+                        <p><strong>Nyāya Inference:</strong></p>
+
+                        <ul>
+                            {% for condition in rec.conditions %}
+                                <li>{{ condition }}</li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
